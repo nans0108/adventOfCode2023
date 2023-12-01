@@ -8,14 +8,14 @@ const readFile = () => {
       console.error(`Error reading file ${fileName}: ${err.message}`);
     } else {
       const lines = data.split("\n");
-      const twoDigitsArray = convertLinesToTwoDigit(convertSubstrings(lines));
+      const twoDigitsArray = convertLinesToTwoDigit(lines);
       console.log(sum(twoDigitsArray));
     }
   });
 };
 
-const convertSubstrings = (data) => {
-  const possibleStrings = {
+const convertLinesToTwoDigit = (data) => {
+  const substringMapping = {
     one: 1,
     two: 2,
     three: 3,
@@ -25,23 +25,42 @@ const convertSubstrings = (data) => {
     seven: 7,
     eight: 8,
     nine: 9,
+    eno: 1,
+    owt: 2,
+    eerht: 3,
+    ruof: 4,
+    evif: 5,
+    xis: 6,
+    neves: 7,
+    thgie: 8,
+    enin: 9,
   };
 
-  return data.map((line) => {
-    let newLine = line;
-    Object.keys(possibleStrings).map((key) => {
-      newLine = newLine.replace(`${key}`, possibleStrings[key]);
-    });
-    return newLine;
-  });
-};
-
-const convertLinesToTwoDigit = (data) => {
   const newData = data.map((line) => {
-    const firstInt = line.match(/\d/);
-    const secondInt = line.split("").reverse().join("").match(/\d/);
-    return secondInt ? `${firstInt}${secondInt}` : `${firstInt}${firstInt}`;
+    const firstInt = line
+      .replace(
+        /(one|two|three|four|five|six|seven|eight|nine)/g,
+        (match, p1) => {
+          return substringMapping[p1] || match;
+        }
+      )
+      .match(/\d/);
+
+    const secondInt = line
+      .split("")
+      .reverse()
+      .join("")
+      .replace(
+        /(eno|owt|eerht|ruof|evif|xis|neves|thgie|enin)/g,
+        (match, p1) => {
+          return substringMapping[p1] || match;
+        }
+      )
+      .match(/\d/);
+
+    return `${firstInt}${secondInt}`;
   });
+
   return newData;
 };
 

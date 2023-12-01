@@ -18,7 +18,7 @@ const convertLinesToTwoDigit = (data) => {
   const newData = data.map((line) => {
     const firstInt = line.match(/\d/);
     const secondInt = line.split("").reverse().join("").match(/\d/);
-    return secondInt ? `${firstInt}${secondInt}` : `${firstInt}${firstInt}`;
+    return `${firstInt}${secondInt}`;
   });
   return newData;
 };
