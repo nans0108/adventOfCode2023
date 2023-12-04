@@ -20,8 +20,6 @@ const readFile = () => {
 
         const firstArray = firstArrayStr.split(" ").filter((e) => e !== "");
         const secondArray = secondArrayStr.split(" ").filter((e) => e !== "");
-        // console.log(firstArray);
-        // console.log(secondArray);
 
         let lineSum = 0;
         let numberOfWins = 0;
