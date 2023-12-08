@@ -45,32 +45,6 @@ const readFile = () => {
       }
 
       console.log("firstCounter: ", firstCounter);
-
-      let allPaths = steps
-        .filter((e) => e.step.charAt(e.step.length - 1) === "A")
-        .map((e) => e.step);
-      let secondCounter = 0;
-
-      while (
-        allPaths.filter((e) => e.charAt(e.length - 1) === "Z").length !==
-        allPaths.length
-      ) {
-        instruction.map((side) => {
-          if (
-            allPaths.filter((e) => e.charAt(e.length - 1) === "Z").length !==
-            allPaths.length
-          ) {
-            let newArray = [];
-            allPaths.map((step) => {
-              newArray.push(steps.filter((e) => e.step === step)[0][side]);
-            });
-            console.log("newArray", newArray);
-            allPaths = newArray;
-            secondCounter++;
-          }
-        });
-      }
-      console.log("secondCounter: ", secondCounter);
     }
   });
 };
