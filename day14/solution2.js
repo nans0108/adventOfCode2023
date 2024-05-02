@@ -24,6 +24,7 @@ const readFile = () => {
 
 function runCycle(data) {
   // north
+
   let newData = data;
   data.map((line, rowIndex) => {
     line.map((value, colIndex) => {
@@ -118,13 +119,6 @@ function formNewArray(data) {
       seenGrids.push(gridStr);
     }
   }
-
-  // const periodicStates = [];
-  // do {
-  //   periodicStates.push(newData.toString());
-  //   newData = runCycle(newData);
-  // } while (!periodicStates.includes(newData.toString()));
-
   const cyclesLeft = (1000000000 - cycle) % (cycle - index + 1);
 
   for (let i = 0; i < cyclesLeft; i++) {
